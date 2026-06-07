@@ -4,7 +4,7 @@
 
 int main (){
 
-    // Matriz 3D: [Face][Linha][Coluna]
+    // Matriz do Cubo: [Face][Linha][Coluna]
 
     char cubo[6][3][3] = {
         // Face 0: Branca - Topo
@@ -44,6 +44,20 @@ int main (){
             {'R', 'R', 'R'}
         }
     };
+
+cubo[6][3][3] = mover_cubo(cubo,2,0,0);
+
+//IMPRIMIR CUBO
+for (int i = 0; i < 6; i++){
+    for (int j = 0; j < 3; j++){
+    for (int k = 0; k < 3; k++){
+        printf("%c", cubo[i][j][k]);
+}
+printf("\n");
+}
+printf("\n");
+}
+
     return 0;
 
 }
