@@ -73,18 +73,17 @@ char cubo2[6][3][3];
                         cubo2[lista1[4]][l][i] = cubo[lista1[3]][l][i];
                         cubo2[lista1[5]][l][i] = cubo[lista1[4]][l][i];
                     }
-                    //----------------------------------------------------------- Essa parte precisa de revisão
                     //FORS PARA MOVER AS FACES DO TOPO OU BASE
                     for (int i = 0; i < 3; i++){
-                        for (int j = 0; j < 3; j++){  
+                        for (int j = 0; j < 3; j++){
+                            //MEXER NO SENTIDO HORÁRIO, MEXERÁ A FACE NORTE NO SENTIDO ANTI-HORÁRIO E A SUL NO SENTIDO HORÁRIO  
                             if (rotacao == 0){
-                                cubo2[lista1_NORTE][3-1-i][i] = cubo[lista1_NORTE][i][i];
+                                cubo2[lista1_NORTE][2-j][i] = cubo[lista1_NORTE][i][j];
                             }
                             else{
-                                cubo2[lista1_SUL][3-1-j][i] = cubo[lista1_SUL][i][i];
+                                cubo2[lista1_SUL][j][2-i] = cubo[lista1_SUL][i][j];
                             }
                         }}
-                    //-----------------------------------------------------------
                     }
 
                 //SE É NO SENTIDO ANTI-HORÁRIO:
@@ -96,18 +95,17 @@ char cubo2[6][3][3];
                         cubo2[lista1[2]][l][i] = cubo[lista1[3]][l][i];
                         cubo2[lista1[3]][l][i] = cubo[lista1[4]][l][i];
                     }
-                    //----------------------------------------------------------- Essa parte precisa de revisão
                     //FOR PARA MOVER AS FACES DO TOPO OU BASE
                     for (int i = 0; i < 3; i++){
                         for (int j = 0; j < 3; j++){   
+                            //MEXER NO SENTIDO HORÁRIO, MEXERÁ A FACE NORTE NO SENTIDO HORÁRIO E A SUL NO SENTIDO ANTI-HORÁRIO 
                             if (rotacao == 0){
-                                cubo2[lista1_NORTE][3-1-j][i] = cubo[lista1_NORTE][i][i];
+                                cubo2[lista1_NORTE][j][2-i] = cubo[lista1_NORTE][i][j];
                             }
                             else{
-                                cubo2[lista1_SUL][3-1-i][i] = cubo[lista1_SUL][i][i];
+                                cubo2[lista1_SUL][2-j][i] = cubo[lista1_SUL][i][j];
                             }
                         }}
-                    //-----------------------------------------------------------
                     }
                 //RETORNA O CUBO PARA A FUNÇÃO
                 for (int i = 0; i < 6; i++){

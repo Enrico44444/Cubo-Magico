@@ -6,10 +6,10 @@ int main (){
     int t2[3][3];
 
 
-    //SENTIDO ANTIHORARIO, PARA FAZER HORARIO FAZER 3-1-i
+    //SENTIDO ANTIHORARIO, PARA FAZER HORARIO FAZER [j][2-i]
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
-            t2[3-1-j][i] = t1[i][j];
+            t2[2-j][i] = t1[i][j];
         }
         printf("\n");
     }

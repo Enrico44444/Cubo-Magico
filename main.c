@@ -1,6 +1,6 @@
 #include "gerador.h"
 #include "funcoes.h"
-#include <ncursesw/ncurses.h>
+#include <stdio.h>
 
 int main (){
 
@@ -9,27 +9,27 @@ int main (){
     char cubo[6][3][3] = {
         // Face 0: Branca - Topo
         {
-            {'W', 'W', 'W'},
-            {'W', 'W', 'W'},
-            {'W', 'W', 'W'}
+            {'W', 'W', 'B'},
+            {'W', 'W', 'B'},
+            {'W', 'W', 'B'}
         },
         // Face 1: Amarela - Base
         {
-            {'Y', 'Y', 'Y'},
-            {'Y', 'Y', 'Y'},
-            {'Y', 'Y', 'Y'}
+            {'Y', 'Y', 'G'},
+            {'Y', 'Y', 'G'},
+            {'Y', 'Y', 'G'}
         },
         // Face 2: Verde - Frente
         {
-            {'G', 'G', 'G'},
-            {'G', 'G', 'G'},
-            {'G', 'G', 'G'}
+            {'G', 'G', 'W'},
+            {'G', 'G', 'W'},
+            {'G', 'G', 'W'}
         },
         // Face 3: Azul - Trás
         {
-            {'B', 'B', 'B'},
-            {'B', 'B', 'B'},
-            {'B', 'B', 'B'}
+            {'Y', 'B', 'B'},
+            {'Y', 'B', 'B'},
+            {'Y', 'B', 'B'}
         },
         // Face 4: Laranja - Esquerda
         {
@@ -45,7 +45,7 @@ int main (){
         }
     };
 
-cubo[6][3][3] = mover_cubo(cubo,2,0,0);
+cubo[6][3][3] = mover_cubo(cubo,2,0,1);
 
 //IMPRIMIR CUBO
 for (int i = 0; i < 6; i++){
