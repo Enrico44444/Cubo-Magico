@@ -3,9 +3,9 @@
 
 //Face vai de 0 até 5, nesta ordem: Branco, Amarelo, Verde, Azul, Laranja, Vermelho.
 //Rotação vai de 0 até 3, nesta ordem: Norte, Sul, Leste e Oeste.
-//Sentido é 0 (anti-horário) ou 1 (horário).
+//Sentido é 0 (horário) ou 1 (anti-horário).
 
-char mover_cubo(char cubo[6][3][3], int face, int rotacao, int sentido) {
+void mover_cubo(char cubo[6][3][3], int face, int rotacao, int sentido) {
 //LISTAS QUE FUNCIONARÃO COMO UM MAPA, PARA MAPEAR AONDE OS ADESIVOS DEVEM IR:
 
 //LISTA 1: MOVIMENTOS NORTE E SUL DAS FACES VERDE, LARANJA, VERMELHO E AZUL: 
@@ -18,7 +18,7 @@ int lista1_NORTE = 0;
 int lista1_SUL = 1;
 
 
-//LISTA 2: MOVIMENTOS LESTE E OESTE DAS FACES VERDE, LARANJA, VERMELHO E AZUL:
+//LISTA 2: MOVIMENTOS LESTE E OESTE DAS FACES VERDE, BRANCO, AZUL E AMARELO:
 //DE BAIXO PARA CIMA: VERDE, BRANCO, AZUL E AMARELO.
 int lista2[6] = {1,2,0,3,1,2};
 
@@ -27,23 +27,26 @@ int lista2[6] = {1,2,0,3,1,2};
 int lista2_LESTE = 5;
 int lista2_OESTE = 4;
 
+//O QUE FALTA?
+//MOVIMENTOS NORTE E SUL DAS FACES BRANCO E AMARELO E MOVIMENTOS LESTE E OESTE DAS FACES VERMLELHO E LARANJA
+
 //LISTA 3: MOVIMENTOS NORTE E SUL DAS FACES BRANCO E AMARELO:
 //DA DIREITA PARA A ESQUERDA BRANCO, VERMELHO, AMARELO, LARANJA.
-int lista3[6] = {5,0,6,1,5,0};
+int lista3[6] = {4,0,5,1,4,0};
 
 //REFERÊNCIA DA FACES QUE ESTÃO A NORTE E A SUL:
 //DEPOIS, TRANSFORMAR EM LISTA PARA SIMPLIFICAR
 int lista3_NORTE = 3;
 int lista3_SUL = 2;
 
-//LISTA 4: MOVIMENTOS LESTE E OESTE DAS FACES BRANCO E AMARELO:
+//LISTA 4: MOVIMENTOS LESTE E OESTE DAS FACES VERLMELHO E LARANJA:
 //DE BAIXO PARA CIMA: BRANCO, AZUL, AMARELO, VERDE.
-int lista4[6] = {2,0,3,1,2,0};
+int lista4[6] = {1,5,0,4,1,5};
 
 //REFERÊNCIA DAS FACES QUE ESTÃO A LESTE E A OESTE:
 //DEPOIS, TRANSFORMAR EM LISTA PARA SIMPLIFICAR
-int lista4_LESTE = 5;
-int lista4_OESTE = 4;
+int lista4_LESTE = 3;
+int lista4_OESTE = 2;
 
 
 //UM CUBO TEMPORÁRIO PARA FACILITAR:
@@ -56,11 +59,9 @@ char cubo2[6][3][3];
 
 //IFS PARA UTILIZAR TODAS ESSAS LISTAS:
 
-        //SE A FACE É VERDE, VERMELHO, AZUL OU LARANJA:
-        if (face == 2 || face == 5 || face == 3 || face == 4 ){
-
-            //SE A ROTAÇÃO É NORTE OU SUL:
-            if (rotacao == 0 || rotacao == 1){
+        //SE A FACE É VERDE, VERMELHO, AZUL OU LARANJA E A ROTAÇÃO É NORTE OU SUL:
+        if ((face == 2 || face == 5 || face == 3 || face == 4) && (rotacao == 0 || rotacao == 1) ){
+    
                 //DEFININDO ÍNDICE DE LINHA COM BASE NA ROTAÇÃO:
                 int l = (rotacao == 0) ? 0 : 2;
     
@@ -70,7 +71,7 @@ char cubo2[6][3][3];
                         for (int i = 0; i < 3; i++){
                             cubo2[lista1[2]][l][i] = cubo[lista1[1]][l][i];
                             cubo2[lista1[3]][l][i] = cubo[lista1[2]][l][i];
-                            cubo2[lista1[4]][l][i] = cubo[lista1[3]][l][i];
+                            cubo2[lista1[4]][l][i] = cubo[lista1[3]][l][2-i];
                             cubo2[lista1[5]][l][i] = cubo[lista1[4]][l][i];
                     }
                         //FORS PARA MOVER AS FACES DO TOPO OU BASE
@@ -93,7 +94,7 @@ char cubo2[6][3][3];
                             cubo2[lista1[0]][l][i] = cubo[lista1[1]][l][i];
                             cubo2[lista1[1]][l][i] = cubo[lista1[2]][l][i];
                             cubo2[lista1[2]][l][i] = cubo[lista1[3]][l][i];
-                            cubo2[lista1[3]][l][i] = cubo[lista1[4]][l][i];
+                            cubo2[lista1[3]][l][i] = cubo[lista1[4]][l][2-i];
                     }
                     //FOR PARA MOVER AS FACES DO TOPO OU BASE
                         for (int i = 0; i < 3; i++){
@@ -107,66 +108,62 @@ char cubo2[6][3][3];
                             }
                         }}
                     }
-
-            }
-            /* ESSA PARTE PRECISA DE REVISÃO, NÃO ESTÁ FUNCIONANDO 100%
-            //SE A ROTAÇÃO É LESTE OU OESTE:
-            if (rotacao == 2 || rotacao == 3){
-
-                //DEFININDO O ÍNDICE DA COLUNA COM BASE NA ROTAÇÃO
-                int l = (rotacao == 2) ? 2 : 0;
-                
+        }
+        //SE A FACE É BRANCO OU AMARELO E A ROTACAO É NORTE OU SUL:
+        else if ((face == 0 || face == 1) && (rotacao == 0 || rotacao == 1)){
+            //DEFININDO ÍNDICE DE LINHA COM BASE NA ROTAÇÃO:
+            int l = (rotacao == 0) ? 0 : 2;
+    
+            //SE É NO SENTIDO HORÁRIO:
                 if (sentido == 0){
                     //FORS PARA MOVER OS ADESIVOS
                     for (int i = 0; i < 3; i++){
-                        cubo2[lista2[2]][i][l] = cubo[lista2[1]][i][l];
-                        cubo2[lista2[3]][i][l] = cubo[lista2[2]][i][l];
-                        cubo2[lista2[4]][i][l] = cubo[lista2[3]][i][l];
-                        cubo2[lista2[5]][i][l] = cubo[lista2[4]][i][l];
+                        cubo2[lista3[2]][l][i] = cubo[lista3[1]][l][i];
+                        cubo2[lista3[3]][l][i] = cubo[lista3[2]][l][i];
+                        cubo2[lista3[4]][l][i] = cubo[lista3[3]][l][2-i];
+                        cubo2[lista3[5]][l][i] = cubo[lista3[4]][l][i];
                     }
-                    //VALIDAR
-                    for (int i = 0; i < 3; i++){
-                        for (int j = 0; j < 3; j++){   
-                                //MEXER NO SENTIDO HORÁRIO, MEXERÁ A FACE LESTE NO SENTIDO HORÁRIO E A OESTE NO SENTIDO ANTI-HORÁRIO 
-                            if (rotacao == 2){
-                                cubo2[lista2_LESTE][j][2-i] = cubo[lista2_LESTE][i][j];
+                        //FORS PARA MOVER AS FACES DO TOPO OU BASE
+                        for (int i = 0; i < 3; i++){
+                            for (int j = 0; j < 3; j++){
+                                //MEXER NO SENTIDO HORÁRIO, MEXERÁ A FACE NORTE NO SENTIDO HORÁRIO E A SUL NO SENTIDO ANTI-HORÁRIO  
+                                if (rotacao == 0){
+                                    cubo2[lista3_NORTE][j][2-i] = cubo[lista3_NORTE][i][j];
                                 }
-                            else{
-                                cubo2[lista2_OESTE][2-j][i] = cubo[lista2_OESTE][i][j];
+                                else{
+                                    cubo2[lista3_SUL][2-j][i] = cubo[lista3_SUL][i][j];
                             }
                         }}
-                }
-                else{
-                    //FORS PARA MOVER OS ADESIVOS
-                    for (int i = 0; i < 3; i++){
-                        cubo2[lista2[0]][i][l] = cubo[lista2[1]][i][l];
-                        cubo2[lista2[1]][i][l] = cubo[lista2[2]][i][l];
-                        cubo2[lista2[2]][i][l] = cubo[lista2[3]][i][l];
-                        cubo2[lista2[3]][i][l] = cubo[lista2[4]][i][l];
                     }
-                    //VALIDAR
-                    for (int i = 0; i < 3; i++){
-                        for (int j = 0; j < 3; j++){   
-                                //MEXER NO SENTIDO HORÁRIO, MEXERÁ A FACE LESTE NO SENTIDO ANTI-HORÁRIO E A OESTE NO SENTIDO HORÁRIO 
-                            if (rotacao == 2){
-                                cubo2[lista2_LESTE][2-j][i] = cubo[lista2_LESTE][i][j];
-                                }
-                            else{
-                                cubo2[lista2_OESTE][j][2-i] = cubo[lista2_OESTE][i][j];
-                            }
-                        }}
-                }
-            }
 
+                //SE É NO SENTIDO ANTI-HORÁRIO:
+                    else{
+                        //FOR PARA MOVER OS ADESIVOS LATERAIS
+                        for (int i = 2; i >= 0; i--){
+                            cubo2[lista3[0]][l][i] = cubo[lista3[1]][l][i];
+                            cubo2[lista3[1]][l][i] = cubo[lista3[2]][l][i];
+                            cubo2[lista3[2]][l][i] = cubo[lista3[3]][l][i];
+                            cubo2[lista3[3]][l][i] = cubo[lista3[4]][l][2-i];
+                    }
+                    //FOR PARA MOVER AS FACES DO TOPO OU BASE
+                        for (int i = 0; i < 3; i++){
+                            for (int j = 0; j < 3; j++){   
+                                //MEXER NO SENTIDO HORÁRIO, MEXERÁ A FACE NORTE NO SENTIDO ANTI-HORÁRIO E A SUL NO SENTIDO HORÁRIO 
+                                if (rotacao == 0){
+                                    cubo2[lista3_NORTE][2-j][i] = cubo[lista3_NORTE][i][j];
+                                }
+                                else{
+                                    cubo2[lista3_SUL][j][2-i] = cubo[lista3_SUL][i][j];
+                            }
+                        }}
+                    }
         }
-            */
         //RETORNA O CUBO PARA A FUNÇÃO
         for (int i = 0; i < 6; i++){
             for (int j = 0; j < 3; j++){
                 for (int k = 0; k < 3; k++){
                     cubo[i][j][k] = cubo2[i][j][k];
                 }}}
-        return cubo[6][3][3];
 }
 
 int solved(char cubo[6][3][3]) {

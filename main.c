@@ -45,7 +45,7 @@ int main (){
         }
     };
 
-cubo[6][3][3] = mover_cubo(cubo,2,2,0);
+mover_cubo(cubo,0,0,0);
 
 //IMPRIMIR CUBO
 for (int i = 0; i < 6; i++){
