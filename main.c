@@ -45,19 +45,20 @@ int main (){
         }
     };
 
-mover_cubo(cubo,0,0,0);
+mover_cubo(cubo, 0, 0);
 
 //IMPRIMIR CUBO
-for (int i = 0; i < 6; i++){
-    for (int j = 0; j < 3; j++){
+printf("\n\n");
+for (int i = 0; i < 3; i++){
+    for (int j = 0; j < 6; j++){
     for (int k = 0; k < 3; k++){
-        printf("%c", cubo[i][j][k]);
+        printf("%c", cubo[j][i][k]);
+}
+printf("    |    ");
 }
 printf("\n");
 }
-printf("\n");
-}
-
+printf("\n\n");
     return 0;
 
 }
