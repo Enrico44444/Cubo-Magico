@@ -45,20 +45,37 @@ int main (){
         }
     };
 
-mover_cubo(cubo, 0, 0);
+    //Início da interação:
 
-//IMPRIMIR CUBO
-printf("\n\n");
-for (int i = 0; i < 3; i++){
-    for (int j = 0; j < 6; j++){
-    for (int k = 0; k < 3; k++){
-        printf("%c", cubo[j][i][k]);
+    int escolha;
+
+    printf("O que deseja fazer?\n1 - Gerar Cubos\n2 - Resolver um cubo\n");
+    while (scanf("%d", &escolha) != 1 || (escolha != 1 && escolha != 2)){
+        printf("Escolha entre 1 e 2!\nO que deseja fazer?\n1 - Gerar Cubos\n2 - Resolver um cubo\n");
+        int c;
+        //Limpa o buffer:
+        while ((c = getchar()) != '\n' && c != EOF);
 }
-printf("    |    ");
-}
-printf("\n");
-}
-printf("\n\n");
+    switch (escolha){
+        case 1:
+        int n;
+        printf("Quantos cubos você deseja gerar?");
+        while (scanf("%d", &n) != 1){
+            printf("Digite um número!\n");
+            int c;
+            while ((c = getchar()) != '\n' && c != EOF);
+        }
+        gerar_cubos(n);
+        break;
+        
+        case 2:
+        break;
+    }
+
+mover_cubo(cubo, 0, 0);
+imprime_cubo(cubo);
+
+
     return 0;
 
 }

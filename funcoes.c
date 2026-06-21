@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "funcoes.h"
+#include <ctype.h>
 
 //Face vai de 0 até 5, nesta ordem: Branco, Amarelo, Verde, Azul, Laranja, Vermelho.
 //Rotação vai de 0 até 3, nesta ordem: Norte, Sul, Leste e Oeste.
@@ -96,7 +97,7 @@ void move_perpendiculares(char cubo[6][3][3], int face, int sentido){
                 case 0:
                     cubo2[l2[1]][l][i] = cubo[l2[2]][2-i][ll];
                     cubo2[l2[2]][i][ll] = cubo[l2[3]][l][i];
-                    cubo2[l2[3]][l][i] = cubo[l2[4]][i][ll];
+                    cubo2[l2[3]][l][i] = cubo[l2[4]][2-i][ll];
                     cubo2[l2[4]][i][ll] = cubo[l2[5]][l][i];
 
                     break;
@@ -106,7 +107,7 @@ void move_perpendiculares(char cubo[6][3][3], int face, int sentido){
                     cubo2[l2[1]][l][i] = cubo[l2[0]][i][ll];
                     cubo2[l2[2]][i][ll] = cubo[l2[1]][l][2-i];
                     cubo2[l2[3]][l][i] = cubo[l2[2]][i][ll];
-                    cubo2[l2[4]][i][ll] = cubo[l2[3]][l][i];
+                    cubo2[l2[4]][i][ll] = cubo[l2[3]][l][2-i];
                     break;
                 }
         }
@@ -142,6 +143,44 @@ void move_perpendiculares(char cubo[6][3][3], int face, int sentido){
          }
     }
     }
+}
+
+void imprime_cubo(char cubo[6][3][3]){
+    for (int i = 0; i < 3; i++){
+    printf("         ");
+    for (int j = 0; j < 3; j++){
+        printf("%c ", cubo[0][i][j]);
+    }
+    printf("\n");
+}
+printf("\n");
+
+for (int i = 0; i < 3; i++){
+    for (int j = 0; j < 3; j++){
+        printf("%c ", cubo[4][i][2-j]);
+    }
+    printf("   ");
+    for (int j = 0; j < 3; j++){
+        printf("%c ", cubo[2][i][j]);
+    }
+    printf("   ");
+    for (int j = 0; j < 3; j++){
+        printf("%c ", cubo[5][i][j]);
+    }
+    printf("   ");
+    for (int j = 0; j < 3; j++){
+        printf("%c ", cubo[3][i][2-j]);
+    }
+        printf("\n");
+}
+printf("\n");
+for (int i = 0; i < 3; i++){
+    printf("         ");
+    for (int j = 0; j < 3; j++){
+        printf("%c ", cubo[1][2-i][j]);
+    }
+    printf("\n");
+}
 }
 
 int solved(char cubo[6][3][3]) {
