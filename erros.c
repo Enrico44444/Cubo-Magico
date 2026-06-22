@@ -1,4 +1,4 @@
-    #include <stdio.h>
+#include <stdio.h>
 #include <string.h>
 
 char cubo[6][3][3];
