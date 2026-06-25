@@ -1,6 +1,5 @@
 #include <stdio.h>
-#include "funcoes.h"
-#include <ctype.h>
+#include <funcoes.h>
 
 //Face vai de 0 até 5, nesta ordem: Branco, Amarelo, Verde, Azul, Laranja, Vermelho.
 //Rotação vai de 0 até 3, nesta ordem: Norte, Sul, Leste e Oeste.

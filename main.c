@@ -1,5 +1,5 @@
-#include "gerador.h"
-#include "funcoes.h"
+#include <gerador.h>
+#include <funcoes.h>
 #include <stdio.h>
 
 int main (){
@@ -65,14 +65,13 @@ int main (){
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
         }
-        gerar_cubos(n);
+        gerar_cubos(cubo, n);
         break;
         
         case 2:
         break;
     }
 
-mover_cubo(cubo, 0, 0);
 imprime_cubo(cubo);
 
 
