@@ -86,5 +86,3 @@ Remove o executável e limpa as pastas `cubo_selecionado` e `cubos_gerados`.
 ### `make run`
 
 Executa o arquivo `projeto_final.exe`.
-
-#include <ncursesw/ncurses.h>
