@@ -60,8 +60,8 @@ int main (){
         case 1:
         int n;
         printf("Quantos cubos você deseja gerar?");
-        while (scanf("%d", &n) != 1){
-            printf("Digite um número!\n");
+        while (scanf("%d", &n) != 1 || (n <= 0)){
+            printf("Resposta deve ser um número maior que 0!\n");
             int c;
             while ((c = getchar()) != '\n' && c != EOF);
         }
@@ -69,11 +69,25 @@ int main (){
         break;
         
         case 2:
-        break;
+            char nome_arquivo[50];
+            char caminho_completo[100];
+            
+            printf("Digite o nome do arquivo que deseja ler (ex: cubo1.txt): ");
+            //LÊ O NOME DO ARQUIVO (LIMITE DE 49 CHARS):
+            scanf("%49s", nome_arquivo);
+
+            //MONTA O CAMINHO PARA PASSAR NA FUNÇÃO:
+            sprintf(caminho_completo, "cubo_selecionado/%s", nome_arquivo);
+            
+            //CHAMA A FUNÇÃO:
+            if (ler_cubo(caminho_completo, cubo)) {
+                printf("Cubo carregado com sucesso a partir de '%s'!\n", nome_arquivo);
+                resolver_cubo(cubo);
+            } else {
+                printf("Falha ao carregar o cubo. Verifique se o nome digitado está correto.\n");
+            }
+            break;
     }
-
-imprime_cubo(cubo);
-
 
     return 0;
 

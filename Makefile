@@ -12,3 +12,4 @@ run:
 clean:
 	rm -rf $(EXE)
 	rm -f cubos_gerados/*.txt
+	rm -f cubo_selecionado/*.txt
