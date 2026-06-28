@@ -16,6 +16,7 @@
 
 8. O programa tentará resolver o cubo aplicando movimentos aleatórios até encontrar uma solução.
 
+**EXTRA:** Ao selecionar a opção **3**, você entra no modo _Sandbox_, podendo mover um cubo selecionado manualmente.
 ---
 
 # Estrutura das Pastas
